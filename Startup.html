@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Terraria Temporary</title>
+</head>
+
+<body>
+    <h1 id="title">Terraria Recipe Tree Maker</h1>
+    <label for="items">
+        <h2>Pick an item</h2>
+    </label>
+    <div id="selectBox">
+        <div class="" onclick="select()" value="blank" name="None" rarity="gray" id="select" tabindex="-1"
+            aria-hidden="true">
+            <div class="optionBox img"><img class="selectorImg" src="img/items/blank.png"></div>
+            <div class="optionBox name" contenteditable="true" spellcheck="false" oninput="search()">None</div>
+        </div>
+    </div>
+    <!---<select name="items" placeholder="Select item..." id="items" onchange="selectChange(this)" onclick="onClick()">
+            <option value="" data-rarity="gray"><img value="">None</option>
+            <option value="zenith" data-rarity="red">Zenith</option>
+            <option value="terra_blade" data-rarity="yellow">Terra Blade</option>
+            <option value="night's_edge" data-rarity="orange">Night's Edge</option>
+            <option value="volcano" data-rarity="orange">Volcano</option>
+            <option value="light's_bane" data-rarity="blue">Light's Bane</option>
+        </select><img height="50px" width="50px" id="selectedItemImg" src="img/blank.png"><br>--->
+
+    <button>Test</button>
+    <div id="test"></div>
+    <p></p>
+    <script src="items/items.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

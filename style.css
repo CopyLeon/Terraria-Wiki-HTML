@@ -1,0 +1,206 @@
+
+
+@keyframes rainbow {
+    0% {
+        color: red;
+    } 14.29% {
+        color: orange;
+    } 28.57% {
+        color: yellow;
+    } 42.86% {
+        color: greenyellow;
+    } 57.14% {
+        color: blue;
+    } 71.43% {
+        color: purple;
+    } 85.71% {
+        color: pink;
+    } 100% {
+        color: red;
+    }
+}
+
+@keyframes fieryRed {
+    0% {
+        color: red;
+    } 50% {
+        color: yellow;
+    } 100% {
+        color: red;
+    }
+}
+
+body {
+    background-image: url(img/bg/bg9.png);
+    background-size: cover;
+    color: white;
+    font-family: Terraria;
+    text-shadow: -2px -2px 1px black,  0px -2px 1px black,  2px -2px 1px black, -2px 0px 1px black,  0px 0px 1px black,  2px 0px 1px black, -2px 2px 1px black, 0px 2px 1px black, 2px 2px 1px black;
+    margin: 0 0 0 60px;
+}
+
+h2 {
+    margin-bottom: 0px;
+}
+
+div[contentEditable="true"]:focus {
+    outline: none;
+}
+
+#select {
+    border: rgb(187, 187, 123) solid 3px;
+    border-radius: 10px;
+}
+
+#select:hover:not(img), .option:hover:not(img) {
+    background-color: rgb(247, 247, 156);
+}
+
+
+#title {
+    margin-left: -50px;
+}
+
+#select, div.option {
+    font-family: Terraria;
+    text-shadow: -2px -2px 1px black,  0px -2px 1px black,  2px -2px 1px black, -2px 0px 1px black,  0px 0px 1px black,  2px 0px 1px black, -2px 2px 1px black, 0px 2px 1px black, 2px 2px 1px black;
+    font-size: 20px;
+    text-align: left;
+    background-color: lightgoldenrodyellow;
+    padding: 0px;
+    width: 100%;
+    height: 50px;
+    margin: auto;
+}
+
+.option:not(img) { 
+    border: transparent solid 3px;
+}
+
+#selectBox {
+    background-color: lightgoldenrodyellow;
+    display: block;
+    border-radius: 10px;
+    padding: 0;
+    width: 95%;
+    max-width: 500px;
+}
+
+
+.selectorImg, .optionImg {
+    max-height: 40px;
+    width: auto;
+    padding: 0;
+    vertical-align: middle;
+    display: inline;
+    margin-left: auto;
+    background-color: transparent;
+}
+
+.optionBox {
+    display: inline-flex;
+    vertical-align: middle;
+    height: 45px;
+    line-height: 100%;
+}
+
+.optionBox.img img {
+    display: block;
+    margin: auto;
+}
+
+.optionBox.img {
+    width:45px;
+    border-right: 1px solid rgb(185, 185, 114);
+}
+
+.optionBox.name {
+    padding-left: 10px;;
+    width: 80%;
+    line-height: 55px;
+}
+
+[rarity="gray"] {
+    color: #828282;
+}
+
+[rarity="white"] {
+    color: #FFFFFF;
+}
+
+[rarity="blue"] {
+    color: #9696FF;
+}
+
+[rarity="green"] {
+    color: #96FF96;
+}
+
+[rarity="orange"] {
+    color: #FFC896;
+}
+
+[rarity="light_red"] {
+    color: #FF9696;
+}
+
+[rarity="pink"] {
+    color: #FF96FF;
+}
+
+[rarity="light_purple"] {
+    color: #D2A0FF;
+}
+
+[rarity="lime"] {
+    color: #96FF0A;
+}
+
+[rarity="yellow"] {
+    color: #FFFF0A;
+}
+
+[rarity="cyan"] {
+    color: #05C8FF;
+}
+
+[rarity="red"] {
+    color: #FF2864;
+}
+
+[rarity="purple"] {
+    color: #B428FF;
+}
+
+[rarity="rainbow"] {
+    animation-name: rainbow;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+[rarity="fiery_red"] {
+    animation-name: fieryRed;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+[rarity="amber"] {
+    color: #FFAF00;
+}
+
+[onclick] {
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: Terraria;
+    src: url(fonts/terraria.ttf);
+}
+
+#test {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}
