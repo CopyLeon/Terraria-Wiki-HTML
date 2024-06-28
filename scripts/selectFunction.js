@@ -1,169 +1,139 @@
-const selectBox = document.getElementById("selectBox");
-const ITEMS = Object.keys(items);
-let SELECTED_BOX = document.getElementById("select");
-let SELECTED_NAME_BOX = document.querySelector(".optionBox.name");
+const SEARCH_BOX = document.getElementById("searchBox");
+const SELECT = document.getElementById("select");
 let isOptionsOpen = false;
-let array = ["items"];
-let completedArray = array.join("");
-let func = [];
-let item;
-let input = "";
-let prevInput = "";
-let property;
-let value;
-let path;
+let isFilterOn = false
 
-function updater() {
-    SELECTED_NAME_BOX = document.querySelector("#select .optionBox.name");
-    SELECTED_BOX = document.getElementById("select");
-}
-
-function search() {
-    input = SELECTED_NAME_BOX.textContent;
+function search(div) {
+    let input = div.textContent;
     input = input.trim();
     input = input.toLowerCase();
-    closeOptions();
-    openOptions();
-    const z = selectBox.querySelectorAll("div.option");
-    for (let x = 0; x < z.length; x++) {
-        if (!z[x].getAttribute("name").toLowerCase().includes(input)) {
-            z[x].remove()
+    removeOptions();
+    createOptions();
+    const option = SEARCH_BOX.querySelectorAll("div.option");
+    for (let x = 0; x < option.length; x++) {
+        if (!option[x].getAttribute("name").toLowerCase().includes(input) && option[x].getAttribute("name") !== "None") {
+            option[x].remove()
         }
     }
 }
 
-function optionSelected(option) {
-    const select = document.getElementById("select");
-    option.setAttribute("class", "");
-    option.setAttribute("id", "select");
-    option.setAttribute("onclick", "select()");
-    option.setAttribute("tabindex", "-1");
-    option.setAttribute("aria-hidden", "true");
-    option.querySelector("img").setAttribute("class", "selectorImg");
-    selectBox.replaceChild(option, select);
-    closeOptions();
+function selectOption(x) {
+    const option = x;
+    const div = SELECT.querySelectorAll("div");
+    for (let x = 0; x < div.length; x++) {
+        div[x].remove();
+    }
+    for (let x = 0; x < items.length; x++) {
+        if (Object.values(items[x])[0] === option.getAttribute("value")) {
+            addAttributes(x, SELECT);
+            addEssensials(SELECT);
+        }
+    }
+    const select = SELECT.querySelector(".searchName");
+    select.setAttribute("contenteditable", "true");
+    select.setAttribute("spellcheck", "false");
+    select.setAttribute("oninput", "search(this)");
+    removeOptions();
 }
 
-function select() {
-    updater();
-    SELECTED_BOX.setAttribute("rarity", "white")
-    SELECTED_NAME_BOX.innerHTML = "";
+function select(x) {
+    const searchSelect = x;
+    searchSelect.querySelector(".searchName").innerText = "";
+    searchSelect.setAttribute("rarity", "white")
     if (!isOptionsOpen) {
-        openOptions();
+        createOptions();
 
     } else {
-        closeOptions();
+        removeOptions();
     }
 }
 
-function openOptions() {
-    isOptionsOpen = true
-    createOptions();
-}
-
-function closeOptions() {
+function removeOptions() {
     isOptionsOpen = false;
-    const option = document.querySelectorAll(".option");
+    const option = SEARCH_BOX.querySelectorAll("div.option");
     for (let x = 0; x < option.length; x++) {
         option[x].remove();
     }
 }
 
 function createOptions() {
-    for (let i = 0; i < ITEMS.length; i++) {
-        updateFunc(i);
-        const option = document.createElement("div");
-        option.setAttribute("class", "option");
-        option.setAttribute("onclick", "optionSelected(this)");
-        addItem(option);
-        selectBox.appendChild(option)
-        deleteItem();
+    isOptionsOpen = true;
+    for (let x = 0; x < items.length; x++) {
+        const option = createDiv("option");
+        option.setAttribute("onclick", "selectOption(this)")
+        addAttributes(x, option);
+        addEssensials(option);
+        transfer({SEARCH_BOX, option});
+    }
+
+}
+
+function createDiv(className) {
+    const x = document.createElement("div");
+    x.setAttribute("class", className);
+    return x
+}
+
+function addEssensials(option) {
+    addSearchImage(option);
+    addSearchBorder(option);
+    addSearchName(option);
+}
+
+function addSearchImage(option) {
+    const x = createDiv("searchImg");
+    const name = option.getAttribute("value");
+    const img = createImg(name)
+    transfer({ option, x, img });
+}
+
+function addSearchBorder(option) {
+    const x = createDiv("searchBorder");
+    transfer({ option, x })
+}
+
+function addSearchName(option) {
+    const x = createDiv("searchName");
+    const name = option.getAttribute("name");
+    const text = document.createTextNode(name);
+    transfer({ option, x, text });
+}
+
+function addAttributes(item, option) {
+    for (let x = 0; x < Object.keys(items[item]).length; x++) {
+        const property = getProperty(item, x);
+        const value = getValue(item, x);
+        addAttribute(property, value, option)
     }
 }
 
-function addItem(option) {
-    updateItem();
-    for (let z = 0; z < eval(func[1]); z++) {
-        updateFunc(z);
-        updateProperty();
-        updateValue();
-        option.setAttribute(property, value);
-        deleteProperty();
-        deleteValue();        
-    }    
-    addImg(option);
-    addName(option);
+function addAttribute(property, value, option) {
+    option.setAttribute(property, value);
 }
 
-function addImg(option) {
-    const imgBox = document.createElement("div");
-    imgBox.setAttribute("class", "optionBox img");
-    const img = document.createElement("img");
-    img.setAttribute("class", "option optionImg");
-    img.setAttribute("src", "img/items/" + option.getAttribute("value") + ".png");
-    imgBox.appendChild(img);
-    option.appendChild(imgBox);
+function createImg(value) {
+    const x = document.createElement("img");
+    x.setAttribute("src", "img/items/" + value + ".png")
+    return x;
 }
 
-function addName(option) {
-    const nameBox = document.createElement("div");
-    nameBox.setAttribute("class", "optionBox name");
-    nameBox.setAttribute("contenteditable", "true");
-    nameBox.setAttribute("spellcheck", "false");
-    nameBox.setAttribute("oninput", "search()");
-    const x = document.createTextNode(option.getAttribute("name"));
-    nameBox.appendChild(x);
-    option.appendChild(nameBox);
+function createTextNode(value) {
+    const x = document.createTextNode(name);
+    return x;
 }
 
-function updateFunc(i) {
-    func[0] = "Object.keys(" + completedArray + ")[" + i + "];";
-    func[1] = "Object.keys(" + completedArray + ").length;";
+function getProperty(item, number) {
+    const x = Object.keys(items[item])[number];
+    return x;
 }
 
-function updateArray() {
-    for (let x = 0; x < array.length; x++) {
-        if (array[x] !== "" && array[x] !== "items" && !array[x].startsWith(".") ) {
-            array[x] = "." + array[x];
-        }
+function getValue(item, number) {
+    const x = Object.values(items[item])[number];
+    return x;
+}
+
+function transfer(array) {
+    for (let x = Object.keys(array).length - 1; x > 0; x--) {
+        Object.values(array)[x - 1].appendChild(Object.values(array)[x]);
     }
-    completedArray = array.join("");
-}
-
-function updateItem() {
-    item = eval(func[0]);
-    updaterItem()
-}
-
-function deleteItem() {
-    item = "";
-    updaterItem();
-}
-
-function updaterItem() {
-    array[1] = item;
-    updateArray();
-}
-
-function updateProperty() {
-    property = eval(func[0]);
-    updaterProperty();
-}
-
-function deleteProperty() {
-    property = "";
-    updaterProperty();
-}
-
-function updaterProperty() {
-    array[2] = property;
-    updateArray();
-}
-
-function updateValue() {
-    value = eval(completedArray);
-}
-
-function deleteValue() {
-    value = "";
 }

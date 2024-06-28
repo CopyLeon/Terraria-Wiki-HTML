@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <link rel="stylesheet" href="style.css">
@@ -11,22 +11,17 @@
     <label for="items">
         <h2>Pick an item</h2>
     </label>
-    <div id="selectBox">
-        <div class="" onclick="select()" value="blank" name="None" rarity="gray" id="select" tabindex="-1"
+    <div id="searchBox">
+        <div onclick="select(this)" value="blank" name="None" rarity="gray" id="select" tabindex="-1"
             aria-hidden="true">
-            <div class="optionBox img"><img class="selectorImg" src="img/items/blank.png"></div>
-            <div class="optionBox name" contenteditable="true" spellcheck="false" oninput="search()">None</div>
+            <div class="searchImg">
+                <img" src="img/items/blank.png">
+            </div>
+            <div class="searchBorder"></div>
+            <div class="searchName" contenteditable="true" spellcheck="false" oninput="search(this)">None</div>
         </div>
     </div>
-    <!---<select name="items" placeholder="Select item..." id="items" onchange="selectChange(this)" onclick="onClick()">
-            <option value="" data-rarity="gray"><img value="">None</option>
-            <option value="zenith" data-rarity="red">Zenith</option>
-            <option value="terra_blade" data-rarity="yellow">Terra Blade</option>
-            <option value="night's_edge" data-rarity="orange">Night's Edge</option>
-            <option value="volcano" data-rarity="orange">Volcano</option>
-            <option value="light's_bane" data-rarity="blue">Light's Bane</option>
-        </select><img height="50px" width="50px" id="selectedItemImg" src="img/blank.png"><br>--->
-
+    <div id="settings"></div>
     <button>Test</button>
     <div id="test"></div>
     <p></p>
