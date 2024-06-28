@@ -134,9 +134,6 @@ var items = [
         rarity: "orange"
     }
 ];
-
-items.sort((a, b) => (a.value > b.value) ? 1 : -1);
-
 items = [
     {
         value: "blank",
@@ -145,3 +142,4 @@ items = [
     },
     ...items
 ];
+items.sort((a, b) => (a.value > b.value) ? 1 : -1);

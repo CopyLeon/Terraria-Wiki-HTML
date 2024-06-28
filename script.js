@@ -2,7 +2,7 @@ const scripts = [
     "items", "selectFunction"
 ]
 
-const p = document.querySelector("p");
+const p = document.getElementById("output");
 p.innerHTML = "No Output";
 
 for (let i of scripts) {
