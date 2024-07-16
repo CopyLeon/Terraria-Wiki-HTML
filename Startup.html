@@ -11,17 +11,24 @@
     <label for="items">
         <h2>Pick an item</h2>
     </label>
-    <div id="searchBox">
-        <div onclick="select(this)" value="blank" name="None" rarity="gray" id="select" tabindex="-1"
-            aria-hidden="true">
-            <div class="searchImg">
-                <img" src="img/items/blank.png">
+    <div id="searchItem">
+        <div id="searchBox">
+            <div onclick="select(this)" value="blank" name="None" rarity="gray" id="select" tabindex="-1"
+                aria-hidden="true">
+                <div class="searchImg">
+                    <img" src="img/items/blank.png">
+                </div>
+                <div class="searchBorder"></div>
+                <div class="searchName" contenteditable="true" spellcheck="false" oninput="search(this)">None</div>
             </div>
-            <div class="searchBorder"></div>
-            <div class="searchName" contenteditable="true" spellcheck="false" oninput="search(this)">None</div>
+        </div>
+        <div id="filters" onclick="filter()">
+            <div id="filterClose"><img src="img/filter.png" alt=""></div>
+            <div id="filterOpen">
+
+            </div>
         </div>
     </div>
-    <div id="settings"></div>
     <button>Test</button>
     <div id="test"></div>
     <p id="output"></p>
